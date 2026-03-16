@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 7-Pillar Business Health Framework™ | Optimum Professional Solutions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ops-teal: #00CED1;
+            --ops-teal-dark: #008B8B;
+            --ops-teal-light: #40E0D0;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #008487;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .welcome-screen {
+            text-align: center;
+        }
+
+        .welcome-logo {
+            max-width: 250px;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+
+        .welcome-screen h1 {
+            font-size: 2.5rem;
+            color: var(--ops-teal-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .trademark {
+            font-size: 0.7em;
+            vertical-align: super;
+        }
+
+        .welcome-screen .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .enhanced-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--ops-teal) 0%, var(--ops-teal-dark) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--ops-teal);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Profile Selection */
+        .profile-section {
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .profile-question {
+            margin-bottom: 2rem;
+        }
+
+        .profile-question h3 {
+            font-size: 1.2rem;
+            color: var(--ops-teal-dark);
+            margin-bottom: 1rem;
+        }
+
+        .profile-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .profile-option {
+            display: block;
+            padding: 1.25rem;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-option:hover {
+            border-color: var(--ops-teal);
+            background: white;
+        }
+
+        .profile-option input[type="radio"] {
+            display: none;
+        }
+
+        .profile-option input[type="radio"]:checked + .profile-label {
+            font-weight: 600;
+            color: #008487;
+        }
+
+        .profile-option input[type="radio"]:checked ~ .profile-option {
+            border-color: var(--ops-teal);
+            background: white;
+        }
+
+        .profile-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .profile-label i {
+            font-size: 1.5rem;
+            color: var(--ops-teal);
+        }
+
+        .profile-description {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ops-teal) 0%, var(--ops-teal-dark) 100%);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 206, 209, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ops-teal) 0%, var(--ops-teal-light) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #008083;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .question-number {
+            color: #008083;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .critical-badge {
+            display: inline-block;
+            background: #de3333;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .high-impact-badge {
+            display: inline-block;
+            background: #b65f00;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .rating-scale {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .rating-option {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+
+        .rating-label {
+            display: block;
+            padding: 0.8rem;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .rating-option input[type="radio"]:checked + .rating-label {
+            background: #008487;
+            color: var(--white);
+            border-color: #008487;
+        }
+
+        .rating-label:hover {
+            border-color: var(--ops-teal);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .navigation-buttons .btn {
+            flex: 1;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .results-logo {
+            max-width: 200px;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+
+        .results-header h1 {
+            font-size: 2.5rem;
+            color: var(--ops-teal-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-summary {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .profile-tags {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .profile-tag {
+            background: var(--ops-teal);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .score-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .score-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--ops-teal-light) 0%, var(--ops-teal) 100%);
+            color: var(--white);
+        }
+
+        .score-card h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .chart-container {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            height: 400px;
+        }
+
+        .pillar-scores {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .pillar-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .pillar-name {
+            font-weight: 500;
+        }
+
+        .score-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .score-high {
+            background: #008850;
+            color: var(--white);
+        }
+
+        .score-medium {
+            background: #b65f00;
+            color: var(--white);
+        }
+
+        .score-low {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        /* Cost of Inaction Styling */
+        .cost-of-inaction-section {
+            margin: 3rem 0;
+        }
+
+        .inaction-card {
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            background: #fff5f5;
+            border-left: 4px solid #de3333;
+        }
+
+        .inaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .inaction-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #de3333;
+        }
+
+        .inaction-score {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #de3333;
+        }
+
+        .risk-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .risk-item {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid #de3333;
+        }
+
+        .risk-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: #de3333;
+            margin-bottom: 0.75rem;
+        }
+
+        .risk-type i {
+            font-size: 1.2rem;
+        }
+
+        .risk-details {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .risk-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-estimate {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .impact-label {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #de3333;
+        }
+
+        .impact-note {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .strength-card {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            background: var(--bg-light);
+            border-left: 4px solid var(--success);
+        }
+
+        .action-card {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            background: var(--bg-light);
+            border-left: 4px solid var(--ops-teal);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .priority-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .priority-high {
+            background: #de3333;
+            color: var(--white);
+        }
+
+        .priority-medium {
+            background: #b65f00;
+            color: var(--white);
+        }
+
+        .card-description {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: var(--white);
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .header, .footer, .btn, .navigation-buttons {
+                display: none;
+            }
+            .card {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo {
+                height: 40px;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .welcome-screen h1 {
+                font-size: 2rem;
+            }
+            .rating-scale {
+                flex-direction: column;
+            }
+            .rating-option {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://www.genspark.ai/api/files/s/t5c4mNhD" alt="Optimum Professional Solutions" class="logo">
+                <span class="logo-text">The 7-Pillar Business Health Framework<span class="trademark">™</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="card welcome-screen">
+            <img src="https://www.genspark.ai/api/files/s/t5c4mNhD" alt="OPS Logo" class="welcome-logo">
+            <h1>The 7-Pillar Business Health Framework<span class="trademark">™</span></h1>
+            <p class="subtitle">A comprehensive assessment to identify growth bottlenecks and unlock your business potential</p>
+            <span class="enhanced-badge">✨ Enhanced with Risk Analysis & Personalized Insights</span>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>43 Weighted Questions</h3>
+                    <p>Critical business factors weighted by impact</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Personalized Analysis</h3>
+                    <p>Tailored to your business stage and type</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Cost of Inaction</h3>
+                    <p>Real dollar impact of weak areas</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Priority Action Plan</h3>
+                    <p>Risk-weighted recommendations</p>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="startProfileQuestions()">
+                <i class="fas fa-play"></i> Start Assessment
+            </button>
+        </div>
+
+        <!-- Business Profile Screen -->
+        <div id="profileScreen" class="card hidden">
+            <h2 class="section-title">Tell Us About Your Business</h2>
+            <p class="section-description">This helps us personalize your assessment and provide relevant insights</p>
+
+            <div class="profile-section">
+                <div class="profile-question">
+                    <h3><i class="fas fa-chart-line"></i> What stage is your business?</h3>
+                    <div class="profile-options">
+                        <label class="profile-option">
+                            <input type="radio" name="stage" value="startup" onchange="updateProfile('stage', 'startup')">
+                            <div class="profile-label">
+                                <i class="fas fa-rocket"></i>
+                                <div>
+                                    <strong>Startup (0-2 years)</strong>
+                                    <div class="profile-description">Early stage, finding product-market fit</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="profile-option">
+                            <input type="radio" name="stage" value="growth" onchange="updateProfile('stage', 'growth')">
+                            <div class="profile-label">
+                                <i class="fas fa-trending-up"></i>
+                                <div>
+                                    <strong>Growth (3-5 years)</strong>
+                                    <div class="profile-description">Scaling operations, expanding market</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="profile-option">
+                            <input type="radio" name="stage" value="established" onchange="updateProfile('stage', 'established')">
+                            <div class="profile-label">
+                                <i class="fas fa-building"></i>
+                                <div>
+                                    <strong>Established (5+ years)</strong>
+                                    <div class="profile-description">Mature business, optimizing operations</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="profile-question">
+                    <h3><i class="fas fa-briefcase"></i> What type of business do you run?</h3>
+                    <div class="profile-options">
+                        <label class="profile-option">
+                            <input type="radio" name="type" value="service" onchange="updateProfile('type', 'service')">
+                            <div class="profile-label">
+                                <i class="fas fa-hands-helping"></i>
+                                <div>
+                                    <strong>Service-Based</strong>
+                                    <div class="profile-description">Consulting, professional services, agencies</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="profile-option">
+                            <input type="radio" name="type" value="product" onchange="updateProfile('type', 'product')">
+                            <div class="profile-label">
+                                <i class="fas fa-box"></i>
+                                <div>
+                                    <strong>Product-Based</strong>
+                                    <div class="profile-description">Physical or digital products for sale</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="profile-option">
+                            <input type="radio" name="type" value="hybrid" onchange="updateProfile('type', 'hybrid')">
+                            <div class="profile-label">
+                                <i class="fas fa-layer-group"></i>
+                                <div>
+                                    <strong>Hybrid</strong>
+                                    <div class="profile-description">Mix of products and services</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="profile-question">
+                    <h3><i class="fas fa-users"></i> What's your current team size?</h3>
+                    <div class="profile-options">
+                        <label class="profile-option">
+                            <input type="radio" name="teamSize" value="solo" onchange="updateProfile('teamSize', 'solo')">
+                            <div class="profile-label">
+                                <i class="fas fa-user"></i>
+                                <div>
+                                    <strong>Solo / Solopreneur</strong>
+                                    <div class="profile-description">Just you or you + contractors</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="profile-option">
+                            <input type="radio" name="teamSize" value="small" onchange="updateProfile('teamSize', 'small')">
+                            <div class="profile-label">
+                                <i class="fas fa-user-friends"></i>
+                                <div>
+                                    <strong>Small Team (2-10)</strong>
+                                    <div class="profile-description">Small dedicated team</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="profile-option">
+                            <input type="radio" name="teamSize" value="large" onchange="updateProfile('teamSize', 'large')">
+                            <div class="profile-label">
+                                <i class="fas fa-users-cog"></i>
+                                <div>
+                                    <strong>Larger Team (11+)</strong>
+                                    <div class="profile-description">Multiple departments or divisions</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="btn btn-primary" id="profileContinueBtn" onclick="startAssessment()" disabled>
+                    Continue to Assessment <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Assessment Screen -->
+        <div id="assessmentScreen" class="card hidden">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">Progress: 0%</span>
+                    <span id="questionCount">Question 0 of 43</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <h2 class="section-title" id="sectionTitle"></h2>
+            <p class="section-description" id="sectionDescription"></p>
+
+            <div id="questionsContainer"></div>
+
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary hidden" id="prevBtn" onclick="previousSection()">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextSection()">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="card hidden">
+            <div class="results-header">
+                <img src="https://www.genspark.ai/api/files/s/t5c4mNhD" alt="OPS Logo" class="results-logo">
+                <h1>Your 7-Pillar Assessment Results</h1>
+                <p class="subtitle">Comprehensive analysis of your business health with personalized insights</p>
+            </div>
+
+            <div class="profile-summary" id="profileSummary"></div>
+
+            <div class="score-summary">
+                <div class="score-card">
+                    <h3>Overall Business Health</h3>
+                    <div class="score-value" id="overallScore">--</div>
+                    <div class="score-label" id="overallLabel">--</div>
+                </div>
+                <div class="score-card">
+                    <h3>Scale-Readiness Score</h3>
+                    <div class="score-value" id="scaleScore">--</div>
+                    <div class="score-label" id="scaleLabel">--</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Performance Across the 7 Pillars</h2>
+            <div class="chart-container">
+                <canvas id="resultsChart"></canvas>
+            </div>
+
+            <div id="pillarScores"></div>
+
+            <div class="cost-of-inaction-section" id="costOfInactionSection"></div>
+
+            <h2 class="section-title" style="margin-top: 3rem;">
+                <i class="fas fa-star" style="color: var(--success);"></i> Your Strengths
+            </h2>
+            <div id="strengthsContainer"></div>
+
+            <h2 class="section-title" style="margin-top: 3rem;">
+                <i class="fas fa-list-check" style="color: var(--ops-teal);"></i> Priority Action Plan
+            </h2>
+            <div id="actionsContainer"></div>
+
+            <div class="navigation-buttons" style="margin-top: 3rem;">
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print Results
+                </button>
+                <button class="btn btn-primary" onclick="restartAssessment()">
+                    <i class="fas fa-redo"></i> Take Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <img src="https://www.genspark.ai/api/files/s/t5c4mNhD" alt="OPS Logo" class="footer-logo">
+        <p class="footer-text">Powered by <strong>Optimum Professional Solutions</strong></p>
+        <p class="footer-text" style="font-size: 0.8rem; margin-top: 0.5rem;">The 7-Pillar Business Health Framework™ © 2024 Optimum Professional Solutions. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Business Profile
+        const businessProfile = {
+            stage: '',
+            type: '',
+            teamSize: ''
+        };
+
+        // Question Weights (1.0 = standard, 1.5 = medium, 2.0-2.5 = high, 3.0 = critical)
+        const questionWeights = {
+            // Leadership & Strategy
+            leadership_0: 2.5, // Strategic vision
+            leadership_1: 2.0, // Data-driven decisions
+            leadership_2: 1.5, // Strategy reviews
+            leadership_3: 1.5, // Vision communication
+            leadership_4: 2.0, // KPIs
+            leadership_5: 1.0, // Leader development
+
+            // Operations & Processes
+            operations_0: 3.0, // Process documentation - CRITICAL
+            operations_1: 2.5, // Efficiency measurement
+            operations_2: 3.0, // Scalability - CRITICAL
+            operations_3: 2.0, // Automation
+            operations_4: 2.5, // Quality control
+            operations_5: 1.5, // Supply chain
+
+            // Financial Management
+            financial_0: 2.5, // Real-time visibility
+            financial_1: 3.0, // Cash flow - CRITICAL
+            financial_2: 2.5, // Forecasting
+            financial_3: 3.0, // Profit margins - CRITICAL
+            financial_4: 2.0, // Access to capital
+            financial_5: 2.0, // Reporting
+
+            // Sales & Marketing
+            sales_0: 2.5, // Ideal customer
+            sales_1: 3.0, // Sales process - CRITICAL
+            sales_2: 2.5, // Lead generation
+            sales_3: 2.5, // CAC management
+            sales_4: 1.5, // Brand differentiation
+            sales_5: 2.0, // Data optimization
+            sales_6: 3.0, // LTV vs CAC - CRITICAL
+
+            // Team & Culture
+            team_0: 2.0, // Talent attraction
+            team_1: 2.5, // Role clarity
+            team_2: 1.5, // Culture
+            team_3: 2.0, // Engagement
+            team_4: 1.5, // Onboarding
+            team_5: 2.0, // Performance management
+
+            // Technology & Innovation
+            technology_0: 2.0, // Infrastructure
+            technology_1: 1.5, // Competitive advantage
+            technology_2: 2.5, // Security
+            technology_3: 1.0, // Innovation systems
+            technology_4: 1.5, // Strategy alignment
+            technology_5: 1.5, // Technical skills
+
+            // Customer Experience
+            customer_0: 2.5, // Exceptional experience
+            customer_1: 2.0, // Feedback collection
+            customer_2: 3.0, // Retention - CRITICAL
+            customer_3: 2.0, // Complaint handling
+            customer_4: 1.5, // NPS tracking
+            customer_5: 2.0  // Customer success priority
+        };
+
+        // Cost of Inaction Database
+        const costOfInaction = {
+            leadership: {
+                revenueRisk: [
+                    'Strategic misalignment leads to missed market opportunities',
+                    'Reactive decision-making vs proactive strategy costs 20-30% potential growth',
+                    'Without clear KPIs, teams work on wrong priorities'
+                ],
+                operationalRisk: [
+                    'Poor decision-making cascades through organization',
+                    'Resource misallocation wastes 15-25% of budget',
+                    'Lack of strategic focus creates organizational confusion'
+                ],
+                timeLoss: [
+                    'Leadership spends 40-60% of time firefighting vs strategic work',
+                    'Team wastes time on projects that don\'t align with goals',
+                    'Reactive management prevents proactive growth'
+                ],
+                impactByStage: {
+                    startup: { min: 25000, max: 75000 },
+                    growth: { min: 75000, max: 200000 },
+                    established: { min: 200000, max: 500000 }
+                }
+            },
+            operations: {
+                revenueRisk: [
+                    'Can\'t scale revenue without proportional cost increases',
+                    'Inefficient processes limit capacity to 60-70% of potential',
+                    'Manual processes prevent taking on larger clients'
+                ],
+                operationalRisk: [
+                    'High error rates damage customer satisfaction and retention',
+                    'Quality issues cost 15-30% more in rework and fixes',
+                    'Process bottlenecks create constant delivery delays'
+                ],
+                timeLoss: [
+                    'Teams spend 20-40% of time on rework and fixing errors',
+                    'No standardization means reinventing wheel daily',
+                    'Inefficiency costs 10-20 hours per week per team member'
+                ],
+                impactByStage: {
+                    startup: { min: 30000, max: 100000 },
+                    growth: { min: 100000, max: 300000 },
+                    established: { min: 300000, max: 750000 }
+                }
+            },
+            financial: {
+                revenueRisk: [
+                    'Poor cash flow management leads to missed opportunities worth $50K-200K',
+                    'Can\'t invest in growth due to financial uncertainty',
+                    'Pricing mistakes leave 10-20% margin on table'
+                ],
+                operationalRisk: [
+                    'Financial surprises force reactive cost-cutting',
+                    'Can\'t make informed investment decisions',
+                    'Risk of cash flow crisis or insolvency'
+                ],
+                timeLoss: [
+                    'Management spends 15-25 hours/month on financial crisis management',
+                    'Constant stress about finances distracts from growth',
+                    'Poor visibility delays critical decisions by weeks'
+                ],
+                impactByStage: {
+                    startup: { min: 50000, max: 150000 },
+                    growth: { min: 150000, max: 400000 },
+                    established: { min: 400000, max: 1000000 }
+                }
+            },
+            sales: {
+                revenueRisk: [
+                    'Unpredictable revenue creates feast-or-famine cycles',
+                    'High CAC and low conversion rate costs $3K-10K per lost deal',
+                    'Over-dependence on referrals limits growth to 20-30% annually'
+                ],
+                operationalRisk: [
+                    'No documented sales process means can\'t scale sales team',
+                    'Inconsistent messaging confuses prospects',
+                    'Founder dependency prevents delegation and growth'
+                ],
+                timeLoss: [
+                    '15-25 hours/month chasing unqualified leads',
+                    'Sales cycles 30-60 days longer than industry standard',
+                    'No tracking means can\'t identify and fix bottlenecks'
+                ],
+                impactByStage: {
+                    startup: { min: 40000, max: 120000 },
+                    growth: { min: 120000, max: 350000 },
+                    established: { min: 350000, max: 800000 }
+                }
+            },
+            team: {
+                revenueRisk: [
+                    'Lost productivity from disengaged teams costs 20-30% potential output',
+                    'High turnover means constant institutional knowledge loss',
+                    'Can\'t attract top talent to drive growth initiatives'
+                ],
+                operationalRisk: [
+                    'Turnover replacement costs average 1.5-2x annual salary',
+                    'Unclear roles create duplicated effort and gaps',
+                    'Poor culture leads to 30-50% higher turnover rate'
+                ],
+                timeLoss: [
+                    'Managers spend 20-30 hours/month on turnover-related activities',
+                    'New hires take 6-12 months to full productivity without good onboarding',
+                    'Recruiting and training takes 40-60 hours per position'
+                ],
+                impactByStage: {
+                    startup: { min: 30000, max: 90000 },
+                    growth: { min: 90000, max: 250000 },
+                    established: { min: 250000, max: 600000 }
+                }
+            },
+            technology: {
+                revenueRisk: [
+                    'Outdated technology creates competitive disadvantage',
+                    'Manual processes limit revenue capacity by 20-40%',
+                    'Can\'t deliver modern customer experience expected in market'
+                ],
+                operationalRisk: [
+                    'Security breaches cost average $150K-500K to remediate',
+                    'System failures cause 5-15 hours of downtime monthly',
+                    'Technology debt makes simple changes take weeks vs hours'
+                ],
+                timeLoss: [
+                    'Manual processes waste 10-20 hours per week per person',
+                    'Inefficient systems add 30-50% more time to standard tasks',
+                    'Technical issues cause 2-5 hours of downtime per week'
+                ],
+                impactByStage: {
+                    startup: { min: 20000, max: 75000 },
+                    growth: { min: 75000, max: 200000 },
+                    established: { min: 200000, max: 500000 }
+                }
+            },
+            customer: {
+                revenueRisk: [
+                    'Poor experience drives 20-40% customer churn annually',
+                    'Lost referrals from unsatisfied customers worth $25K-100K',
+                    'Negative reviews and reputation damage prevents 30-50% of potential deals'
+                ],
+                operationalRisk: [
+                    'Handling complaints takes 15-25 hours/month of leadership time',
+                    'Churn requires constant new customer acquisition (5-7x more expensive)',
+                    'Poor word-of-mouth damages brand and increases CAC by 40-60%'
+                ],
+                timeLoss: [
+                    'Fixing customer issues vs growing business: 10-20 hours/week',
+                    'Rebuilding trust after poor experience takes 6-12 months',
+                    'Reactive customer service prevents proactive improvements'
+                ],
+                impactByStage: {
+                    startup: { min: 35000, max: 100000 },
+                    growth: { min: 100000, max: 300000 },
+                    established: { min: 300000, max: 750000 }
+                }
+            }
+        };
+
+        // Assessment Data
+        const assessmentData = {
+            sections: [
+                {
+                    id: 'leadership',
+                    title: 'Pillar 1: Leadership & Strategy',
+                    description: 'Evaluate your strategic vision and leadership effectiveness',
+                    questions: [
+                        { text: 'Our company has a clear, documented strategic vision for the next 3-5 years', critical: true },
+                        { text: 'Leadership decisions are data-driven and aligned with our strategic goals', critical: false },
+                        { text: 'We regularly review and adjust our strategy based on market changes', critical: false },
+                        { text: 'Our leadership team communicates the vision effectively across all levels', critical: false },
+                        { text: 'We have clear KPIs that measure progress toward strategic objectives', critical: false },
+                        { text: 'Leadership actively develops future leaders within the organization', critical: false }
+                    ]
+                },
+                {
+                    id: 'operations',
+                    title: 'Pillar 2: Operations & Processes',
+                    description: 'Assess operational efficiency and process maturity',
+                    questions: [
+                        { text: 'Our core business processes are well-documented and standardized', critical: true },
+                        { text: 'We regularly measure and optimize operational efficiency', critical: false },
+                        { text: 'Our operations can scale without proportional increases in costs', critical: true },
+                        { text: 'We have automated repetitive tasks where possible', critical: false },
+                        { text: 'Quality control measures are consistently applied across operations', critical: false },
+                        { text: 'Our supply chain and logistics are reliable and cost-effective', critical: false }
+                    ]
+                },
+                {
+                    id: 'financial',
+                    title: 'Pillar 3: Financial Management',
+                    description: 'Review financial health and planning capabilities',
+                    questions: [
+                        { text: 'We have accurate, real-time visibility into our financial performance', critical: false },
+                        { text: 'Cash flow is consistently positive and well-managed', critical: true },
+                        { text: 'We have a detailed financial forecast for the next 12-24 months', critical: false },
+                        { text: 'Profit margins are healthy and improving over time', critical: true },
+                        { text: 'We have access to capital for growth initiatives when needed', critical: false },
+                        { text: 'Financial reporting is timely, accurate, and actionable', critical: false }
+                    ]
+                },
+                {
+                    id: 'sales',
+                    title: 'Pillar 4: Sales & Marketing',
+                    description: 'Evaluate your customer acquisition and revenue generation',
+                    questions: [
+                        { text: 'We have a clear understanding of our ideal customer profile', critical: false },
+                        { text: 'Our sales process is documented and consistently followed', critical: true },
+                        { text: 'Marketing generates a steady flow of qualified leads', critical: false },
+                        { text: 'Customer acquisition cost (CAC) is well understood and managed', critical: false },
+                        { text: 'Our brand positioning clearly differentiates us from competitors', critical: false },
+                        { text: 'We effectively use data to optimize marketing and sales efforts', critical: false },
+                        { text: 'Customer lifetime value (LTV) significantly exceeds acquisition cost', critical: true }
+                    ]
+                },
+                {
+                    id: 'team',
+                    title: 'Pillar 5: Team & Culture',
+                    description: 'Assess team capabilities and organizational culture',
+                    questions: [
+                        { text: 'We attract and retain top talent in our industry', critical: false },
+                        { text: 'Employee roles and responsibilities are clearly defined', critical: false },
+                        { text: 'Our company culture supports innovation and continuous improvement', critical: false },
+                        { text: 'Team members are engaged and motivated', critical: false },
+                        { text: 'We have effective onboarding and training programs', critical: false },
+                        { text: 'Performance management processes drive accountability and growth', critical: false }
+                    ]
+                },
+                {
+                    id: 'technology',
+                    title: 'Pillar 6: Technology & Innovation',
+                    description: 'Evaluate technology infrastructure and innovation capacity',
+                    questions: [
+                        { text: 'Our technology infrastructure supports current and future business needs', critical: false },
+                        { text: 'We leverage technology to gain competitive advantages', critical: false },
+                        { text: 'Data security and privacy measures meet industry standards', critical: false },
+                        { text: 'We have systems in place to foster innovation', critical: false },
+                        { text: 'Technology decisions are aligned with business strategy', critical: false },
+                        { text: 'Our team has the technical skills needed for our business model', critical: false }
+                    ]
+                },
+                {
+                    id: 'customer',
+                    title: 'Pillar 7: Customer Experience',
+                    description: 'Measure customer satisfaction and retention',
+                    questions: [
+                        { text: 'We consistently deliver exceptional customer experiences', critical: false },
+                        { text: 'Customer feedback is actively collected and acted upon', critical: false },
+                        { text: 'Customer retention rates are high and improving', critical: true },
+                        { text: 'We have a systematic approach to handling customer complaints', critical: false },
+                        { text: 'Net Promoter Score (NPS) or similar metrics are tracked and strong', critical: false },
+                        { text: 'Customer success is prioritized across the organization', critical: false }
+                    ]
+                }
+            ]
+        };
+
+        // State
+        let currentSection = 0;
+        let responses = {};
+
+        function updateProfile(field, value) {
+            businessProfile[field] = value;
+            
+            // Enable continue button if all profile questions answered
+            if (businessProfile.stage && businessProfile.type && businessProfile.teamSize) {
+                document.getElementById('profileContinueBtn').disabled = false;
+            }
+        }
+
+        function startProfileQuestions() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('profileScreen').classList.remove('hidden');
+        }
+
+        function startAssessment() {
+            document.getElementById('profileScreen').classList.add('hidden');
+            document.getElementById('assessmentScreen').classList.remove('hidden');
+            currentSection = 0;
+            responses = {};
+            renderSection();
+        }
+
+        function renderSection() {
+            const section = assessmentData.sections[currentSection];
+            document.getElementById('sectionTitle').textContent = section.title;
+            document.getElementById('sectionDescription').textContent = section.description;
+
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            section.questions.forEach((questionObj, index) => {
+                const questionId = `${section.id}_${index}`;
+                const weight = questionWeights[questionId] || 1.0;
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'question-block';
+                
+                let badge = '';
+                if (weight >= 3.0) {
+                    badge = '<span class="critical-badge">CRITICAL</span>';
+                } else if (weight >= 2.0) {
+                    badge = '<span class="high-impact-badge">HIGH IMPACT</span>';
+                }
+
+                questionBlock.innerHTML = `
+                    <div class="question-text">
+                        <span class="question-number">Q${getGlobalQuestionNumber(currentSection, index)}.</span>
+                        ${questionObj.text}
+                        ${badge}
+                    </div>
+                    <div class="rating-scale">
+                        ${[1, 2, 3, 4, 5].map(value => `
+                            <div class="rating-option">
+                                <input type="radio" id="${questionId}_${value}" name="${questionId}" value="${value}" 
+                                    ${responses[questionId] === value ? 'checked' : ''}
+                                    onchange="saveResponse('${questionId}', ${value})">
+                                <label for="${questionId}_${value}" class="rating-label">
+                                    ${['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'][value - 1]}
+                                </label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(questionBlock);
+            });
+
+            updateProgress();
+            updateNavigation();
+        }
+
+        function getGlobalQuestionNumber(sectionIndex, questionIndex) {
+            let total = 1;
+            for (let i = 0; i < sectionIndex; i++) {
+                total += assessmentData.sections[i].questions.length;
+            }
+            return total + questionIndex;
+        }
+
+        function saveResponse(questionId, value) {
+            responses[questionId] = value;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalQuestions = assessmentData.sections.reduce((sum, section) => sum + section.questions.length, 0);
+            const answeredQuestions = Object.keys(responses).length;
+            const progress = (answeredQuestions / totalQuestions) * 100;
+
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            document.getElementById('progressText').textContent = `Progress: ${Math.round(progress)}%`;
+            document.getElementById('questionCount').textContent = `Question ${answeredQuestions} of ${totalQuestions}`;
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (currentSection === 0) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+
+            if (currentSection === assessmentData.sections.length - 1) {
+                nextBtn.innerHTML = '<i class="fas fa-check"></i> View Results';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+            }
+        }
+
+        function nextSection() {
+            const section = assessmentData.sections[currentSection];
+            const allAnswered = section.questions.every((q, index) => {
+                return responses[`${section.id}_${index}`] !== undefined;
+            });
+
+            if (!allAnswered) {
+                alert('Please answer all questions before proceeding.');
+                return;
+            }
+
+            if (currentSection < assessmentData.sections.length - 1) {
+                currentSection++;
+                renderSection();
+                window.scrollTo(0, 0);
+            } else {
+                showResults();
+            }
+        }
+
+        function previousSection() {
+            if (currentSection > 0) {
+                currentSection--;
+                renderSection();
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function calculateWeightedScores() {
+            const scores = {};
+            let totalWeightedScore = 0;
+            let totalMaxWeightedScore = 0;
+
+            assessmentData.sections.forEach(section => {
+                let sectionWeightedScore = 0;
+                let sectionMaxWeightedScore = 0;
+
+                section.questions.forEach((q, index) => {
+                    const questionId = `${section.id}_${index}`;
+                    const value = responses[questionId] || 0;
+                    const weight = questionWeights[questionId] || 1.0;
+
+                    sectionWeightedScore += value * weight;
+                    sectionMaxWeightedScore += 5 * weight;
+                });
+
+                const sectionScore = Math.round((sectionWeightedScore / sectionMaxWeightedScore) * 100);
+                scores[section.id] = {
+                    title: section.title,
+                    score: sectionScore
+                };
+
+                totalWeightedScore += sectionWeightedScore;
+                totalMaxWeightedScore += sectionMaxWeightedScore;
+            });
+
+            scores.overall = Math.round((totalWeightedScore / totalMaxWeightedScore) * 100);
+
+            // Calculate Scale-Readiness (weighted)
+            const weights = {
+                operations: 0.20,
+                financial: 0.20,
+                leadership: 0.15,
+                sales: 0.15,
+                team: 0.15,
+                technology: 0.10,
+                customer: 0.05
+            };
+
+            let scaleScore = 0;
+            Object.keys(weights).forEach(key => {
+                scaleScore += scores[key].score * weights[key];
+            });
+            scores.scaleReadiness = Math.round(scaleScore);
+
+            return scores;
+        }
+
+        function showResults() {
+            document.getElementById('assessmentScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            window.scrollTo(0, 0);
+
+            const scores = calculateWeightedScores();
+
+            // Display profile summary
+            displayProfileSummary();
+
+            // Overall scores
+            document.getElementById('overallScore').textContent = scores.overall;
+            document.getElementById('overallLabel').textContent = getScoreLabel(scores.overall);
+            document.getElementById('scaleScore').textContent = scores.scaleReadiness;
+            document.getElementById('scaleLabel').textContent = getScaleReadinessLabel(scores.scaleReadiness);
+
+            // Chart
+            renderChart(scores);
+
+            // Pillar scores
+            renderPillarScores(scores);
+
+            // Cost of Inaction for weak areas
+            renderCostOfInaction(scores);
+
+            // Strengths
+            renderStrengths(scores);
+
+            // Actions
+            renderActions(scores);
+        }
+
+        function displayProfileSummary() {
+            const container = document.getElementById('profileSummary');
+            const stageLabels = {
+                startup: 'Startup (0-2 years)',
+                growth: 'Growth (3-5 years)',
+                established: 'Established (5+ years)'
+            };
+            const typeLabels = {
+                service: 'Service-Based',
+                product: 'Product-Based',
+                hybrid: 'Hybrid'
+            };
+            const teamLabels = {
+                solo: 'Solo / Solopreneur',
+                small: 'Small Team (2-10)',
+                large: 'Larger Team (11+)'
+            };
+
+            container.innerHTML = `
+                <h3 style="margin-bottom: 1rem; color: var(--ops-teal-dark);">Your Business Profile</h3>
+                <div class="profile-tags">
+                    <span class="profile-tag"><i class="fas fa-chart-line"></i> ${stageLabels[businessProfile.stage]}</span>
+                    <span class="profile-tag"><i class="fas fa-briefcase"></i> ${typeLabels[businessProfile.type]}</span>
+                    <span class="profile-tag"><i class="fas fa-users"></i> ${teamLabels[businessProfile.teamSize]}</span>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                    Your results and recommendations are personalized based on this profile
+                </p>
+            `;
+        }
+
+        function getScoreLabel(score) {
+            if (score >= 80) return 'Excellent';
+            if (score >= 60) return 'Good';
+            if (score >= 40) return 'Fair';
+            return 'Needs Improvement';
+        }
+
+        function getScaleReadinessLabel(score) {
+            if (score >= 81) return 'High-Growth Phase';
+            if (score >= 61) return 'Scale-Ready Phase';
+            if (score >= 41) return 'Growth Preparation Phase';
+            return 'Foundation Building Phase';
+        }
+
+        function getScoreClass(score) {
+            if (score >= 60) return 'score-high';
+            if (score >= 40) return 'score-medium';
+            return 'score-low';
+        }
+
+        function renderChart(scores) {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            
+            const labels = assessmentData.sections.map(s => s.title.replace('Pillar ', '').replace(/^\d+:\s*/, ''));
+            const data = assessmentData.sections.map(s => scores[s.id].score);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Score',
+                        data: data,
+                        backgroundColor: 'rgba(0, 206, 209, 0.6)',
+                        borderColor: 'rgba(0, 139, 139, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderPillarScores(scores) {
+            const container = document.getElementById('pillarScores');
+            container.innerHTML = '<div class="pillar-scores">';
+
+            assessmentData.sections.forEach(section => {
+                const score = scores[section.id].score;
+                const scoreClass = getScoreClass(score);
+                const pillarName = section.title.replace(/^Pillar \d+:\s*/, '');
+                
+                container.innerHTML += `
+                    <div class="pillar-item">
+                        <span class="pillar-name">${pillarName}</span>
+                        <span class="score-badge ${scoreClass}">${score}%</span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML += '</div>';
+        }
+
+        function renderCostOfInaction(scores) {
+            const container = document.getElementById('costOfInactionSection');
+            
+            // Find weak pillars (score < 60)
+            const weakPillars = assessmentData.sections
+                .map(s => ({ ...scores[s.id], id: s.id, title: s.title.replace(/^Pillar \d+:\s*/, '') }))
+                .filter(p => p.score < 60)
+                .sort((a, b) => a.score - b.score);
+
+            if (weakPillars.length === 0) {
+                container.innerHTML = `
+                    <h2 class="section-title" style="margin-top: 3rem;">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i> No Critical Risk Areas
+                    </h2>
+                    <p style="color: var(--text-light);">All pillars are performing at healthy levels. Focus on maintaining excellence and continuous improvement.</p>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <h2 class="section-title" style="margin-top: 3rem;">
+                    <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i> Cost of Inaction Analysis
+                </h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">
+                    These weak areas are costing your business real money, time, and opportunities. Here's the specific impact:
+                </p>
+            `;
+
+            weakPillars.forEach(pillar => {
+                const pillarKey = pillar.id;
+                const inactionData = costOfInaction[pillarKey];
+                const impact = inactionData.impactByStage[businessProfile.stage];
+
+                container.innerHTML += `
+                    <div class="inaction-card">
+                        <div class="inaction-header">
+                            <div class="inaction-title">⚠️ ${pillar.title}</div>
+                            <div class="inaction-score">${pillar.score}%</div>
+                        </div>
+
+                        <div class="risk-grid">
+                            <div class="risk-item">
+                                <div class="risk-type">
+                                    <i class="fas fa-chart-line"></i>
+                                    Revenue Risk
+                                </div>
+                                <ul class="risk-details">
+                                    ${inactionData.revenueRisk.map(risk => `<li>${risk}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="risk-item">
+                                <div class="risk-type">
+                                    <i class="fas fa-cog"></i>
+                                    Operational Risk
+                                </div>
+                                <ul class="risk-details">
+                                    ${inactionData.operationalRisk.map(risk => `<li>${risk}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="risk-item">
+                                <div class="risk-type">
+                                    <i class="fas fa-clock"></i>
+                                    Time Loss
+                                </div>
+                                <ul class="risk-details">
+                                    ${inactionData.timeLoss.map(risk => `<li>${risk}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="impact-estimate">
+                            <div class="impact-label">💵 ESTIMATED ANNUAL IMPACT</div>
+                            <div class="impact-value">$${impact.min.toLocaleString()} - $${impact.max.toLocaleString()}</div>
+                            <div class="impact-note">Based on ${businessProfile.stage} ${businessProfile.type} business profile</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderStrengths(scores) {
+            const container = document.getElementById('strengthsContainer');
+            const sortedSections = assessmentData.sections
+                .map(s => ({ ...scores[s.id], id: s.id, title: s.title.replace(/^Pillar \d+:\s*/, '') }))
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 3);
+
+            const leverage = {
+                leadership: 'Use your strong strategic vision to drive innovation and guide the organization through growth challenges.',
+                operations: 'Leverage efficient operations as a competitive advantage and model for scaling other business areas.',
+                financial: 'Strong financial management provides the foundation for strategic investments and sustainable growth.',
+                sales: 'Effective sales and marketing capabilities can be amplified to accelerate growth and market penetration.',
+                team: 'A strong team and culture enable rapid execution and attract additional top talent.',
+                technology: 'Technology leadership can create significant competitive advantages and enable new business models.',
+                customer: 'Exceptional customer experience drives referrals, retention, and sustainable competitive advantage.'
+            };
+
+            container.innerHTML = sortedSections.map((section, index) => `
+                <div class="strength-card">
+                    <div class="card-title">
+                        ${index + 1}. ${section.title}
+                        <span class="score-badge score-high" style="float: right;">${section.score}%</span>
+                    </div>
+                    <div class="card-description">
+                        <strong>Leverage:</strong> ${leverage[section.id]}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderActions(scores) {
+            const container = document.getElementById('actionsContainer');
+            const sortedSections = assessmentData.sections
+                .map(s => ({ ...scores[s.id], id: s.id }))
+                .sort((a, b) => a.score - b.score);
+
+            const actions = {
+                leadership: {
+                    title: 'Develop Strategic Roadmap',
+                    description: 'Create a detailed 3-year strategic plan with quarterly milestones, clear KPIs, and accountability measures.',
+                    impact: 'Provides clarity and alignment across the organization, enabling faster and better decision-making.',
+                    priority: 'high'
+                },
+                operations: {
+                    title: 'Process Documentation & Optimization',
+                    description: 'Document all core processes, identify inefficiencies, and implement automation where possible.',
+                    impact: 'Reduces costs, improves quality, and creates scalable foundation for growth.',
+                    priority: 'high'
+                },
+                financial: {
+                    title: 'Implement Financial Dashboard',
+                    description: 'Create real-time financial reporting with KPIs, cash flow forecasting, and scenario planning capabilities.',
+                    impact: 'Enables data-driven decisions and proactive financial management.',
+                    priority: 'high'
+                },
+                sales: {
+                    title: 'Optimize Customer Acquisition',
+                    description: 'Analyze and optimize the entire customer journey, from lead generation through closing.',
+                    impact: 'Reduces CAC, improves conversion rates, and accelerates revenue growth.',
+                    priority: 'medium'
+                },
+                team: {
+                    title: 'Strengthen Team Development',
+                    description: 'Implement structured onboarding, training programs, and performance management systems.',
+                    impact: 'Improves retention, productivity, and organizational capability.',
+                    priority: 'medium'
+                },
+                technology: {
+                    title: 'Technology Infrastructure Audit',
+                    description: 'Assess current technology stack and create roadmap for improvements aligned with business goals.',
+                    impact: 'Reduces technical debt and enables technology-driven competitive advantages.',
+                    priority: 'medium'
+                },
+                customer: {
+                    title: 'Enhance Customer Experience',
+                    description: 'Implement systematic feedback collection, NPS tracking, and customer success initiatives.',
+                    impact: 'Increases retention, referrals, and customer lifetime value.',
+                    priority: 'medium'
+                }
+            };
+
+            // Get actions for bottom 3 performing areas
+            const priorityActions = sortedSections.slice(0, 3).map(s => ({
+                ...actions[s.id],
+                area: s.title.replace(/^Pillar \d+:\s*/, '')
+            }));
+
+            // Add strategic actions
+            const strategicActions = [
+                {
+                    title: 'Establish Growth Metrics Framework',
+                    description: 'Define and track key growth metrics across all business areas with weekly reviews.',
+                    impact: 'Creates visibility, accountability, and data-driven culture.',
+                    priority: 'high',
+                    area: 'Cross-Functional'
+                },
+                {
+                    title: 'Build Scalable Infrastructure',
+                    description: 'Invest in systems, processes, and team structure that can support 3-5x growth.',
+                    impact: 'Prevents future bottlenecks and enables rapid scaling.',
+                    priority: 'medium',
+                    area: 'Cross-Functional'
+                },
+                {
+                    title: 'Quarterly Strategic Reviews',
+                    description: 'Institute quarterly business reviews to assess progress, adjust strategy, and align priorities.',
+                    impact: 'Maintains strategic focus and enables rapid course correction.',
+                    priority: 'medium',
+                    area: 'Leadership'
+                },
+                {
+                    title: 'Customer Advisory Board',
+                    description: 'Create advisory board of key customers to guide product/service development and strategy.',
+                    impact: 'Ensures customer-centricity and reduces risk of market misalignment.',
+                    priority: 'medium',
+                    area: 'Customer Experience'
+                }
+            ];
+
+            const allActions = [...priorityActions, ...strategicActions]
+                .sort((a, b) => (a.priority === 'high' ? -1 : 1));
+
+            container.innerHTML = allActions.map((action, index) => `
+                <div class="action-card">
+                    <div class="card-title">
+                        ${index + 1}. ${action.title}
+                    </div>
+                    <div class="card-meta">
+                        <span class="priority-badge priority-${action.priority}">${action.priority.toUpperCase()} PRIORITY</span>
+                        <span style="color: var(--text-light);">Area: ${action.area}</span>
+                    </div>
+                    <div class="card-description">
+                        ${action.description}
+                    </div>
+                    <div class="card-description" style="margin-top: 0.5rem;">
+                        <strong>Expected Impact:</strong> ${action.impact}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function restartAssessment() {
+            currentSection = 0;
+            responses = {};
+            businessProfile.stage = '';
+            businessProfile.type = '';
+            businessProfile.teamSize = '';
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('welcomeScreen').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+    <!-- Footer -->
+    <div class="footer">
+        <img src="https://www.genspark.ai/api/files/s/t5c4mNhD" alt="OPS Logo" class="footer-logo">
+        <p class="footer-text">Powered by Optimum Professional Solutions</p>
+    </div>
+</body>
+</html>
